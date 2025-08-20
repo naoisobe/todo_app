@@ -22,7 +22,7 @@ class TodosController < ApplicationController
 
   def edit
     respond_to do |format|
-      format.turbo_stream { 
+      format.turbo_stream {
         if params[:cancel]
           render :cancel_edit
         else
