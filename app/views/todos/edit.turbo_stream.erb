@@ -1,0 +1,5 @@
+<%= turbo_stream.replace dom_id(@todo) do %>
+  <li id="<%= dom_id(@todo) %>" class="todo-item editing">
+    <%= render "edit_form", todo: @todo %>
+  </li>
+<% end %>

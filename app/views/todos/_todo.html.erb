@@ -1,0 +1,12 @@
+<li id="<%= dom_id(todo) %>" class="todo-item <%= 'completed' if todo.completed %>">
+  <div class="todo-left">
+    <%= form_with model: todo, url: todo_path(todo), method: :patch, local: false, html: { class: "toggle-form" } do |f| %>
+      <%= f.check_box :completed, checked: todo.completed, onchange: 'this.form.submit()' %>
+    <% end %>
+    <span class="title"><%= todo.title %></span>
+  </div>
+  <div class="todo-right">
+    <%= link_to "Edit", edit_todo_path(todo), data: { turbo_stream: true }, class: "btn-edit" %>
+    <%= button_to "Delete", todo_path(todo), method: :delete, form: { data: { turbo: true } }, class: "btn-delete" %>
+  </div>
+</li>

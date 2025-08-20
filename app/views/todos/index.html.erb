@@ -1,0 +1,19 @@
+<div class="container">
+  <header class="header">
+    <h1 class="app-title">Todo</h1>
+  </header>
+
+  <%= turbo_frame_tag "new_todo" do %>
+    <%= render "form", todo: @todo %>
+  <% end %>
+
+  <section class="todo-list-section">
+    <ul id="todos" class="todo-list">
+      <%= render @todos %>
+    </ul>
+  </section>
+
+  <footer class="footer">
+    <p class="muted">Built with Hotwire — responsive layout</p>
+  </footer>
+</div>

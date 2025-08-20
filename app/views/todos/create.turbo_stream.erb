@@ -1,0 +1,9 @@
+<%= turbo_stream.prepend "todos" do %>
+  <%= render partial: "todo", locals: { todo: @todo } %>
+<% end %>
+
+<%= turbo_stream.replace "new_todo" do %>
+  <%= turbo_frame_tag "new_todo" do %>
+    <%= render "form", todo: Todo.new %>
+  <% end %>
+<% end %>

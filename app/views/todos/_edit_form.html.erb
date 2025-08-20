@@ -1,0 +1,9 @@
+<%= form_with model: todo, url: todo_path(todo), method: :patch, local: false, html: { class: "edit-todo-form" } do |f| %>
+  <div class="field-wrap">
+    <%= f.text_field :title, class: "input", autofocus: true, data: { controller: "todo", todo_target: "input" } %>
+    <div class="edit-actions">
+      <%= f.submit "Save", class: "btn btn-save" %>
+      <%= link_to "Cancel", edit_todo_path(todo, cancel: true), data: { turbo_stream: true }, class: "btn btn-cancel" %>
+    </div>
+  </div>
+<% end %>

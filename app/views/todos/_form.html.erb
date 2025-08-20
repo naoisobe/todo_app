@@ -1,0 +1,6 @@
+<%= form_with model: todo, local: false, html: { class: "new-todo-form" } do |f| %>
+  <div class="field-wrap">
+    <%= f.text_field :title, placeholder: "Add a new todo", class: "input", autofocus: true, data: { controller: "todo", todo_target: "input" } %>
+    <%= f.submit "Add", class: "btn" %>
+  </div>
+<% end %>
