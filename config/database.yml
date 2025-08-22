@@ -17,11 +17,13 @@ development:
   cable:
     <<: *default
     database: storage/development_cable.sqlite3
-    migrations_paths: db/cable_migrate
   queue:
     <<: *default
     database: storage/development_queue.sqlite3
-    migrations_paths: db/queue_migrate
+  cache:
+    <<: *default
+    database: storage/development_cache.sqlite3
+    migrations_paths: db/cache_migrate
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -38,6 +40,10 @@ test:
     <<: *default
     database: storage/test_queue.sqlite3
     migrations_paths: db/queue_migrate
+  cache:
+    <<: *default
+    database: storage/test_cache.sqlite3
+    migrations_paths: db/cache_migrate
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -71,3 +77,7 @@ production:
     <<: *default
     database: storage/production_queue.sqlite3
     migrations_paths: db/queue_migrate
+  cache:
+    <<: *default
+    database: storage/production_cache.sqlite3
+    migrations_paths: db/cache_migrate
