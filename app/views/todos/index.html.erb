@@ -1,19 +1,45 @@
-<div class="container">
-  <header class="header">
-    <h1 class="app-title">Todo</h1>
+<div class="space-y-8">
+  <!-- Header -->
+  <header class="text-center">
+    <h1 class="text-5xl font-bold text-gray-800 mb-2">✨ Todo</h1>
+    <p class="text-gray-600 text-lg">Stay organized, stay productive</p>
   </header>
 
-  <%= turbo_frame_tag "new_todo" do %>
-    <%= render "form", todo: @todo %>
-  <% end %>
+  <!-- Todo Form -->
+  <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+    <%= turbo_frame_tag "new_todo" do %>
+      <%= render "form", todo: @todo %>
+    <% end %>
+  </div>
 
-  <section class="todo-list-section">
-    <ul id="todos" class="todo-list">
-      <%= render @todos %>
-    </ul>
+  <!-- Todo List -->
+  <section class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+      <span class="mr-2">📋</span>
+      Tasks
+      <span class="ml-auto text-sm font-normal text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+        <%= @todos.count %> items
+      </span>
+    </h2>
+    
+    <div id="todos" class="space-y-2">
+      <% if @todos.any? %>
+        <%= render @todos %>
+      <% else %>
+        <div class="text-center py-12 text-gray-500">
+          <div class="text-6xl mb-4">📝</div>
+          <p class="text-lg">No tasks yet!</p>
+          <p class="text-sm">Add your first task above to get started.</p>
+        </div>
+      <% end %>
+    </div>
   </section>
 
-  <footer class="footer">
-    <p class="muted">Built with Hotwire — responsive layout</p>
+  <!-- Footer -->
+  <footer class="text-center">
+    <p class="text-gray-500 text-sm flex items-center justify-center">
+      <span class="mr-2">⚡</span>
+      Built with Hotwire & Tailwind CSS
+    </p>
   </footer>
 </div>

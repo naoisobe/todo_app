@@ -1,9 +1,18 @@
-<%= form_with model: todo, url: todo_path(todo), method: :patch, local: false, html: { class: "edit-todo-form" } do |f| %>
-  <div class="field-wrap">
-    <%= f.text_field :title, class: "input", autofocus: true, data: { controller: "todo", todo_target: "input" } %>
-    <div class="edit-actions">
-      <%= f.submit "Save", class: "btn btn-save" %>
-      <%= link_to "Cancel", edit_todo_path(todo, cancel: true), data: { turbo_stream: true }, class: "btn btn-cancel" %>
+<%= form_with model: todo, url: todo_path(todo), method: :patch, local: false, html: { class: "bg-white p-4 rounded-xl border-2 border-blue-200 shadow-lg" } do |f| %>
+  <div class="space-y-3">
+    <div>
+      <%= f.text_field :title, 
+          class: "w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all text-gray-700",
+          autofocus: true, 
+          data: { controller: "todo", todo_target: "input" } %>
+    </div>
+    <div class="flex gap-2 justify-end">
+      <%= f.submit "Save Changes", 
+          class: "px-4 py-2 bg-green-500 text-white font-medium rounded-lg hover:bg-green-600 focus:ring-2 focus:ring-green-200 focus:outline-none transition-all" %>
+      <%= link_to "Cancel", 
+          edit_todo_path(todo, cancel: true), 
+          data: { turbo_stream: true }, 
+          class: "px-4 py-2 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg transition-all focus:ring-2 focus:ring-gray-200 focus:outline-none" %>
     </div>
   </div>
 <% end %>

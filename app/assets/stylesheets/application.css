@@ -1,166 +1,23 @@
 /*
  * This is a manifest file that'll be compiled into application.css.
  *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
+ * Any CSS added here will be added after Tailwind's base and components layers,
+ * but before Tailwind's utilities layer. This is useful for custom component styles.
  */
 
-/* Basic responsive layout and styling for the Todo app */
-:root {
-  --max-width: 720px;
-  --accent: #3b82f6; /* blue-500 */
-  --bg: #f8fafc; /* gray-50 */
-  --muted: #6b7280; /* gray-500 */
-}
+/* Custom component styles can be added here if needed */
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background: var(--bg);
-  color: #111827;
-  margin: 0;
-  padding: 1rem;
-}
-
-.container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-  padding: 1rem;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.app-title {
-  margin: 0;
-  font-size: 1.25rem;
-}
-
-.new-todo-form .field-wrap {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
-}
-
-.input {
-  flex: 1 1 auto;
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
-  border: 1px solid #e5e7eb;
-  font-size: 1rem;
-}
-
-.btn {
-  background: var(--accent);
-  color: white;
-  border: none;
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.todo-list {
-  list-style: none;
-  padding: 0;
-  margin: 1rem 0 0 0;
-}
-
+/* Smooth transitions for todo items */
 .todo-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem;
-  border-bottom: 1px solid #f3f4f6;
+  transition: all 0.2s ease-in-out;
 }
 
-.todo-item .title {
-  margin-left: 0.5rem;
-  cursor: pointer;
+/* Custom animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.todo-item .title:hover {
-  background-color: #f9fafb;
-  padding: 0.125rem 0.25rem;
-  border-radius: 4px;
-}
-
-.todo-item.completed .title {
-  text-decoration: line-through;
-  color: var(--muted);
-}
-
-.todo-right {
-  display: flex;
-  gap: 0.25rem;
-}
-
-.btn-edit {
-  background: transparent;
-  border: 1px solid #059669;
-  color: #059669;
-  padding: 0.25rem 0.5rem;
-  border-radius: 6px;
-  font-size: 0.875rem;
-}
-
-.btn-delete {
-  background: transparent;
-  border: 1px solid #ef4444;
-  color: #ef4444;
-  padding: 0.25rem 0.5rem;
-  border-radius: 6px;
-  font-size: 0.875rem;
-}
-
-/* 編集フォーム用スタイル */
-.edit-todo-form .field-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.edit-actions {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.btn-save {
-  background: #059669;
-  color: white;
-}
-
-.btn-cancel {
-  background: #6b7280;
-  color: white;
-}
-
-.todo-item.editing {
-  background-color: #f0f9ff;
-  border: 1px solid var(--accent);
-  border-radius: 6px;
-  padding: 0.75rem;
-}
-
-.footer {
-  margin-top: 1rem;
-  text-align: center;
-  color: var(--muted);
-  font-size: 0.875rem;
-}
-
-/* Responsive tweaks */
-@media (max-width: 480px) {
-  .container { padding: 0.75rem }
-  .app-title { font-size: 1rem }
-  .input { font-size: 0.95rem }
-  .btn { padding: 0.4rem 0.6rem }
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
 }

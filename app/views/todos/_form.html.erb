@@ -1,6 +1,13 @@
-<%= form_with model: todo, local: false, html: { class: "new-todo-form" } do |f| %>
-  <div class="field-wrap">
-    <%= f.text_field :title, placeholder: "Add a new todo", class: "input", autofocus: true, data: { controller: "todo", todo_target: "input" } %>
-    <%= f.submit "Add", class: "btn" %>
+<%= form_with model: todo, local: false, html: { class: "flex gap-3" } do |f| %>
+  <div class="flex-1">
+    <%= f.text_field :title, 
+        placeholder: "What needs to be done?", 
+        class: "w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all text-gray-700 placeholder-gray-400",
+        autofocus: true, 
+        data: { controller: "todo", todo_target: "input" } %>
+  </div>
+  <div class="flex-shrink-0">
+    <%= f.submit "Add Task", 
+        class: "px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-medium rounded-xl hover:from-blue-600 hover:to-indigo-700 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all transform hover:scale-105 cursor-pointer" %>
   </div>
 <% end %>
