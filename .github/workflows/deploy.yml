@@ -1,0 +1,46 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.3.0
+        bundler-cache: true
+        
+    - name: Install Kamal
+      run: gem install kamal
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+      
+    - name: Deploy with Kamal
+      env:
+        KAMAL_REGISTRY_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+        chmod 600 ~/.ssh/deploy_key
+        
+        # SSH設定
+        cat >> ~/.ssh/config << EOF
+        Host sakura_vps
+          HostName 153.121.65.40
+          User root
+          IdentityFile ~/.ssh/deploy_key
+          StrictHostKeyChecking no
+        EOF
+        
+        kamal deploy

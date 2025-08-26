@@ -5,6 +5,12 @@
  * but before Tailwind's utilities layer. This is useful for custom component styles.
  */
 
+/*
+ *= require tailwindcss
+ *= require_tree .
+ *= require_self
+ */
+
 /* Custom component styles can be added here if needed */
 
 /* Smooth transitions for todo items */
