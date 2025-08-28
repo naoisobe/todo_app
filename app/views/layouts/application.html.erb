@@ -17,8 +17,8 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-  <%# Load compiled Tailwind CSS (built in Dockerfile) %>
-  <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+  <%# Temporarily disable Tailwind: load only application.css %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
