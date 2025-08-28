@@ -8,3 +8,8 @@ Rails.application.config.assets.version = "1.0"
 
 # Ensure Propshaft serves build outputs (e.g. Tailwind compiled CSS)
 Rails.application.config.assets.paths << Rails.root.join("app/assets/builds")
+
+# Ensure the compiled Tailwind build (app/assets/builds/tailwind.css)
+# is included in the precompile output as `tailwind-<digest>.css` so
+# the production public/assets contains the compiled file.
+Rails.application.config.assets.precompile += ["tailwind.css"]
