@@ -17,8 +17,8 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-  <%# Temporarily disable Tailwind: load only application.css %>
-  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%# Load compiled Tailwind CSS (precompiled to application.tailwind-<digest>.css) %>
+  <%= stylesheet_link_tag "application.tailwind", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
