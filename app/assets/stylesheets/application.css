@@ -6,14 +6,6 @@
  */
 
 /*
- * This is a manifest file that'll be compiled into application.css.
- *
- * Any CSS added here will be added after Tailwind's base and components layers,
- * but before Tailwind's utilities layer. This is useful for custom component styles.
- */
-
-/*
- *= require tailwindcss
  *= require_tree .
  *= require_self
  */
