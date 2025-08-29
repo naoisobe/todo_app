@@ -17,11 +17,8 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-  <%# Load compiled Tailwind build and the application.tailwind manifest. The compiled
-      `tailwind.css` (built into public/assets/tailwind-<digest>.css) contains the
-      utility classes; keep `application.tailwind` for any additional layer wrappers. %>
+  <%# Load the compiled Tailwind CSS (built from app/assets/tailwind/application.css) %>
   <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
-  <%= stylesheet_link_tag "application.tailwind", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
