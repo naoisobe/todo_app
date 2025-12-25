@@ -8,7 +8,8 @@ defmodule TodoApp.TodosTest do
 
     import TodoApp.TodosFixtures
 
-    @invalid_attrs %{done: nil, title: nil, category_id: nil}
+    @invalid_attrs %{done: nil, title: nil, category_id: nil, priority: nil}
+    @invalid_priority_attrs %{title: "test", category_id: 1, priority: "invalid"}
 
     test "list_todos/0 returns all todos" do
       todo = todo_fixture()
@@ -19,26 +20,31 @@ defmodule TodoApp.TodosTest do
       cat_a = Repo.insert!(%TodoApp.Todos.Category{name: "A"})
       cat_b = Repo.insert!(%TodoApp.Todos.Category{name: "B"})
       
-      todo1 = todo_fixture(title: "X", category_id: cat_b.id)
-      todo2 = todo_fixture(title: "Y", category_id: cat_a.id)
+      todo1 = todo_fixture(title: "X", category_id: cat_b.id, priority: "low", due_date: ~D[2025-12-31])
+      todo2 = todo_fixture(title: "Y", category_id: cat_a.id, priority: "high", due_date: ~D[2025-12-01])
 
       assert Todos.list_todos(sort_by: :title, sort_dir: :asc) == [todo1, todo2]
       assert Todos.list_todos(sort_by: :category, sort_dir: :asc) == [todo2, todo1]
+      assert Todos.list_todos(sort_by: :priority, sort_dir: :asc) == [todo2, todo1] # high before low (alphabetical)
+      assert Todos.list_todos(sort_by: :due_date, sort_dir: :asc) == [todo2, todo1]
       assert Todos.list_todos(category_id: cat_a.id) == [todo2]
     end
 
     test "create_todo/1 with valid data creates a todo" do
       cat = Repo.insert!(%TodoApp.Todos.Category{name: "Test"})
-      valid_attrs = %{done: true, title: "some title", category_id: cat.id}
+      valid_attrs = %{done: true, title: "some title", category_id: cat.id, priority: "high", due_date: ~D[2025-12-25]}
 
       assert {:ok, %Todo{} = todo} = Todos.create_todo(valid_attrs)
       assert todo.done == true
       assert todo.title == "some title"
       assert todo.category_id == cat.id
+      assert todo.priority == "high"
+      assert todo.due_date == ~D[2025-12-25]
     end
 
     test "create_todo/1 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} = Todos.create_todo(@invalid_attrs)
+      assert {:error, %Ecto.Changeset{}} = Todos.create_todo(@invalid_priority_attrs)
     end
 
     test "update_todo/2 with valid data updates the todo" do

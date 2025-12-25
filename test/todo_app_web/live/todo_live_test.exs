@@ -17,8 +17,11 @@ defmodule TodoAppWeb.TodoLiveTest do
       assert html =~ "カテゴリ管理"
 
       assert view
-             |> form("form[phx-submit=save]", title: "新タスク", category_id: cat.id)
+             |> form("form[phx-submit=save]", title: "新タスク", category_id: cat.id, priority: "high", due_date: "2025-12-31")
              |> render_submit() =~ "新タスク"
+
+      assert render(view) =~ "高"
+      assert render(view) =~ "期限: 2025-12-31"
     end
 
     test "manages categories", %{conn: conn} do
@@ -86,8 +89,10 @@ defmodule TodoAppWeb.TodoLiveTest do
     test "sorts todos", %{conn: conn} do
       cat_a = TodoApp.Repo.insert!(%TodoApp.Todos.Category{name: "A"})
       cat_b = TodoApp.Repo.insert!(%TodoApp.Todos.Category{name: "B"})
-      todo_fixture(title: "Y", category_id: cat_a.id)
-      todo_fixture(title: "X", category_id: cat_b.id)
+      
+      # Using specific priorities and dates to test sorting
+      todo_fixture(title: "Y", category_id: cat_a.id, priority: "high", due_date: ~D[2025-12-20])
+      todo_fixture(title: "X", category_id: cat_b.id, priority: "low", due_date: ~D[2025-12-10])
       
       {:ok, view, _html} = live(conn, ~p"/todos")
 
@@ -96,6 +101,14 @@ defmodule TodoAppWeb.TodoLiveTest do
 
       # Sort by title (asc) -> X then Y
       view |> element("button[phx-click=sort][phx-value-by=title]") |> render_click()
+      assert view |> render() =~ ~r/X.*Y/s
+
+      # Sort by priority (asc) -> high (H) before low (L) alphabet
+      view |> element("button[phx-click=sort][phx-value-by=priority]") |> render_click()
+      assert view |> render() =~ ~r/Y.*X/s
+
+      # Sort by due_date (asc) -> 12/10 before 12/20
+      view |> element("button[phx-click=sort][phx-value-by=due_date]") |> render_click()
       assert view |> render() =~ ~r/X.*Y/s
 
       # Sort by category (asc) -> Y (cat A) then X (cat B)

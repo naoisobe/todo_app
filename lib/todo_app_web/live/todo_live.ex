@@ -16,8 +16,10 @@ defmodule TodoAppWeb.TodoLive do
     {:ok, socket}
   end
 
-  def handle_event("save", %{"title" => title, "category_id" => category_id}, socket) do
-    case Todos.create_todo(%{title: title, done: false, category_id: category_id}) do
+  def handle_event("save", %{"title" => title, "category_id" => category_id, "priority" => priority, "due_date" => due_date}, socket) do
+    due_date = if due_date == "", do: nil, else: due_date
+
+    case Todos.create_todo(%{title: title, done: false, category_id: category_id, priority: priority, due_date: due_date}) do
       {:ok, todo} ->
         {:noreply, stream_insert(socket, :todos, todo, at: 0)}
 
@@ -147,6 +149,22 @@ defmodule TodoAppWeb.TodoLive do
             </button>
             <button
               phx-click="sort"
+              phx-value-by="priority"
+              class={["btn btn-sm join-item", @sort_by == :priority && "btn-primary"]}
+            >
+              優先度
+              <.icon :if={@sort_by == :priority} name={if @sort_dir == :asc, do: "hero-chevron-up", else: "hero-chevron-down"} class="size-3" />
+            </button>
+            <button
+              phx-click="sort"
+              phx-value-by="due_date"
+              class={["btn btn-sm join-item", @sort_by == :due_date && "btn-primary"]}
+            >
+              期限
+              <.icon :if={@sort_by == :due_date} name={if @sort_dir == :asc, do: "hero-chevron-up", else: "hero-chevron-down"} class="size-3" />
+            </button>
+            <button
+              phx-click="sort"
               phx-value-by="category"
               class={["btn btn-sm join-item", @sort_by == :category && "btn-primary"]}
             >
@@ -216,6 +234,22 @@ defmodule TodoAppWeb.TodoLive do
                 autocomplete="off"
               />
             </div>
+            <div class="flex-1 form-control min-w-[120px]">
+              <label class="label px-0 pt-0">
+                <span class="label-text font-bold text-lg mb-1">優先度</span>
+              </label>
+              <select name="priority" class="select select-bordered select-lg w-full focus:select-primary shadow-sm">
+                <option value="low">低</option>
+                <option value="medium" selected>中</option>
+                <option value="high">高</option>
+              </select>
+            </div>
+            <div class="flex-1 form-control min-w-[150px]">
+              <label class="label px-0 pt-0">
+                <span class="label-text font-bold text-lg mb-1">期限</span>
+              </label>
+              <input type="date" name="due_date" class="input input-bordered input-lg w-full focus:input-primary shadow-sm" />
+            </div>
             <div class="flex-1 form-control min-w-[150px]">
               <label class="label px-0 pt-0">
                 <span class="label-text font-bold text-lg mb-1">カテゴリ</span>
@@ -283,8 +317,28 @@ defmodule TodoAppWeb.TodoLive do
                     </form>
                   </div>
 
-                  <!-- Dates -->
-                  <div class="text-[10px] text-base-content/40 flex gap-2">
+                  <!-- Options (Priority, Dates) -->
+                  <div class="text-[10px] text-base-content/40 flex flex-wrap gap-x-3 gap-y-1">
+                    <!-- Priority Badge -->
+                    <span class={[
+                      "font-bold uppercase tracking-wider px-1 rounded-sm",
+                      todo.priority == "high" && "bg-error/10 text-error",
+                      todo.priority == "medium" && "bg-warning/10 text-warning-content",
+                      todo.priority == "low" && "bg-info/10 text-info"
+                    ]}>
+                      {case todo.priority do
+                        "high" -> "高"
+                        "medium" -> "中"
+                        "low" -> "低"
+                        _ -> todo.priority
+                      end}
+                    </span>
+
+                    <span :if={todo.due_date} class="flex items-center gap-1 font-medium text-base-content/60">
+                      <.icon name="hero-calendar" class="size-3" />
+                      期限: {todo.due_date}
+                    </span>
+
                     <span>作成: {format_date(todo.inserted_at)}</span>
                     <span :if={todo.inserted_at != todo.updated_at}>
                       更新: {format_date(todo.updated_at)}
