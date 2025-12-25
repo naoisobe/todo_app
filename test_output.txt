@@ -1,0 +1,79 @@
+Running ExUnit with seed: 633230, max_cases: 16
+
+................07:21:54.414 [error] GenServer #PID<0.454.0> terminating
+** (KeyError) key :color not found in:
+
+    #Ecto.Association.NotLoaded<association :category is not loaded>
+
+    (todo_app 0.1.0) lib/todo_app_web/live/todo_live.ex:261: anonymous fn/7 in TodoAppWeb.TodoLive.render/1
+    (phoenix_live_view 1.1.17) lib/phoenix_live_view/diff.ex:729: Phoenix.LiveView.Diff.process_keyed/5
+    (phoenix_live_view 1.1.17) lib/phoenix_live_view/diff.ex:665: anonymous fn/6 in Phoenix.LiveView.Diff.traverse_keyed/8
+    (elixir 1.19.3) lib/enum.ex:2520: Enum."-reduce/3-lists^foldl/2-0-"/3
+    (phoenix_live_view 1.1.17) lib/phoenix_live_view/diff.ex:646: Phoenix.LiveView.Diff.traverse_keyed/8
+    (phoenix_live_view 1.1.17) lib/phoenix_live_view/diff.ex:460: Phoenix.LiveView.Diff.traverse/6
+    (phoenix_live_view 1.1.17) lib/phoenix_live_view/diff.ex:609: anonymous fn/3 in Phoenix.LiveView.Diff.traverse_dynamic/6
+    (elixir 1.19.3) lib/enum.ex:2520: Enum."-reduce/3-lists^foldl/2-0-"/3
+    (phoenix_live_view 1.1.17) lib/phoenix_live_view/diff.ex:398: Phoenix.LiveView.Diff.traverse/6
+    (phoenix_live_view 1.1.17) lib/phoenix_live_view/diff.ex:146: Phoenix.LiveView.Diff.render/4
+    (phoenix_live_view 1.1.17) lib/phoenix_live_view/channel.ex:1020: anonymous fn/4 in Phoenix.LiveView.Channel.render_diff/3
+    (telemetry 1.3.0) /home/naoisobe/projects/todo_app/deps/telemetry/src/telemetry.erl:324: :telemetry.span/3
+    (phoenix_live_view 1.1.17) lib/phoenix_live_view/channel.ex:1013: Phoenix.LiveView.Channel.render_diff/3
+    (phoenix_live_view 1.1.17) lib/phoenix_live_view/channel.ex:843: Phoenix.LiveView.Channel.handle_changed/4
+    (stdlib 7.1) gen_server.erl:2434: :gen_server.try_handle_info/3
+    (stdlib 7.1) gen_server.erl:2420: :gen_server.handle_msg/3
+    (stdlib 7.1) proc_lib.erl:333: :proc_lib.init_p_do_apply/3
+Process Label: {Phoenix.LiveView, TodoAppWeb.TodoLive, "lv:phx-GIRG55xj0yDF2AIj"}
+Last message: %Phoenix.Socket.Message{topic: "lv:phx-GIRG55xj0yDF2AIj", event: "event", payload: %{"event" => "save", "type" => "form", "value" => "category_id=1&title=%E6%96%B0%E3%82%BF%E3%82%B9%E3%82%AF"}, ref: "1", join_ref: 0}
+07:21:54.441 [error] GenServer #PID<0.452.0> terminating
+** (KeyError) key :color not found in:
+
+    #Ecto.Association.NotLoaded<association :category is not loaded>
+
+    (todo_app 0.1.0) lib/todo_app_web/live/todo_live.ex:261: anonymous fn/7 in TodoAppWeb.TodoLive.render/1
+    (phoenix_live_view 1.1.17) lib/phoenix_live_view/diff.ex:729: Phoenix.LiveView.Diff.process_keyed/5
+    (phoenix_live_view 1.1.17) lib/phoenix_live_view/diff.ex:665: anonymous fn/6 in Phoenix.LiveView.Diff.traverse_keyed/8
+    (elixir 1.19.3) lib/enum.ex:2520: Enum."-reduce/3-lists^foldl/2-0-"/3
+    (phoenix_live_view 1.1.17) lib/phoenix_live_view/diff.ex:646: Phoenix.LiveView.Diff.traverse_keyed/8
+    (phoenix_live_view 1.1.17) lib/phoenix_live_view/diff.ex:460: Phoenix.LiveView.Diff.traverse/6
+    (phoenix_live_view 1.1.17) lib/phoenix_live_view/diff.ex:609: anonymous fn/3 in Phoenix.LiveView.Diff.traverse_dynamic/6
+    (elixir 1.19.3) lib/enum.ex:2520: Enum."-reduce/3-lists^foldl/2-0-"/3
+    (phoenix_live_view 1.1.17) lib/phoenix_live_view/diff.ex:398: Phoenix.LiveView.Diff.traverse/6
+    (phoenix_live_view 1.1.17) lib/phoenix_live_view/diff.ex:146: Phoenix.LiveView.Diff.render/4
+    (phoenix_live_view 1.1.17) lib/phoenix_live_view/channel.ex:1020: anonymous fn/4 in Phoenix.LiveView.Channel.render_diff/3
+    (telemetry 1.3.0) /home/naoisobe/projects/todo_app/deps/telemetry/src/telemetry.erl:324: :telemetry.span/3
+    (phoenix_live_view 1.1.17) lib/phoenix_live_view/channel.ex:1013: Phoenix.LiveView.Channel.render_diff/3
+    (phoenix_live_view 1.1.17) lib/phoenix_live_view/channel.ex:843: Phoenix.LiveView.Channel.handle_changed/4
+    (stdlib 7.1) gen_server.erl:2434: :gen_server.try_handle_info/3
+    (stdlib 7.1) gen_server.erl:2420: :gen_server.handle_msg/3
+    (stdlib 7.1) proc_lib.erl:333: :proc_lib.init_p_do_apply/3
+Last message: {:EXIT, #PID<0.449.0>, {{:badkey, :color, #Ecto.Association.NotLoaded<association :category is not loaded>}, [{TodoAppWeb.TodoLive, :"-render/1-fun-15-", 7, [file: ~c"lib/todo_app_web/live/todo_live.ex", line: 261]}, {Phoenix.LiveView.Diff, :process_keyed, 5, [file: ~c"lib/phoenix_live_view/diff.ex", line: 729]}, {Phoenix.LiveView.Diff, :"-traverse_keyed/8-fun-0-", 6, [file: ~c"lib/phoenix_live_view/diff.ex", line: 665]}, {Enum, :"-reduce/3-lists^foldl/2-0-", 3, [file: ~c"lib/enum.ex", line: 2520]}, {Phoenix.LiveView.Diff, :traverse_keyed, 8, [file: ~c"lib/phoenix_live_view/diff.ex", line: 646]}, {Phoenix.LiveView.Diff, :traverse, 6, [file: ~c"lib/phoenix_live_view/diff.ex", line: 460]}, {Phoenix.LiveView.Diff, :"-traverse_dynamic/6-fun-0-", 3, [file: ~c"lib/phoenix_live_view/diff.ex", line: 609]}, {Enum, :"-reduce/3-lists^foldl/2-0-", 3, [file: ~c"lib/enum.ex", line: 2520]}, {Phoenix.LiveView.Diff, :traverse, 6, [file: ~c"lib/phoenix_live_view/diff.ex", line: 398]}, {Phoenix.LiveView.Diff, :render, 4, [file: ~c"lib/phoenix_live_view/diff.ex", line: 146]}, {Phoenix.LiveView.Channel, :"-render_diff/3-fun-0-", 4, [file: ~c"lib/phoenix_live_view/channel.ex", line: 1020]}, {:telemetry, :span, 3, [file: ~c"/home/naoisobe/projects/todo_app/deps/telemetry/src/telemetry.erl", line: 324]}, {Phoenix.LiveView.Channel, :render_diff, 3, [file: ~c"lib/phoenix_live_view/channel.ex", line: 1013]}, {...}, ...]}}
+
+
+  1) test Todo Live lists all todos and creates new one (TodoAppWeb.TodoLiveTest)
+     test/todo_app_web/live/todo_live_test.exs:13
+     ** (EXIT from #PID<0.449.0>) an exception was raised:
+         ** (KeyError) key :color not found in:
+
+         #Ecto.Association.NotLoaded<association :category is not loaded>
+
+             (todo_app 0.1.0) lib/todo_app_web/live/todo_live.ex:261: anonymous fn/7 in TodoAppWeb.TodoLive.render/1
+             (phoenix_live_view 1.1.17) lib/phoenix_live_view/diff.ex:729: Phoenix.LiveView.Diff.process_keyed/5
+             (phoenix_live_view 1.1.17) lib/phoenix_live_view/diff.ex:665: anonymous fn/6 in Phoenix.LiveView.Diff.traverse_keyed/8
+             (elixir 1.19.3) lib/enum.ex:2520: Enum."-reduce/3-lists^foldl/2-0-"/3
+             (phoenix_live_view 1.1.17) lib/phoenix_live_view/diff.ex:646: Phoenix.LiveView.Diff.traverse_keyed/8
+             (phoenix_live_view 1.1.17) lib/phoenix_live_view/diff.ex:460: Phoenix.LiveView.Diff.traverse/6
+             (phoenix_live_view 1.1.17) lib/phoenix_live_view/diff.ex:609: anonymous fn/3 in Phoenix.LiveView.Diff.traverse_dynamic/6
+             (elixir 1.19.3) lib/enum.ex:2520: Enum."-reduce/3-lists^foldl/2-0-"/3
+             (phoenix_live_view 1.1.17) lib/phoenix_live_view/diff.ex:398: Phoenix.LiveView.Diff.traverse/6
+             (phoenix_live_view 1.1.17) lib/phoenix_live_view/diff.ex:146: Phoenix.LiveView.Diff.render/4
+             (phoenix_live_view 1.1.17) lib/phoenix_live_view/channel.ex:1020: anonymous fn/4 in Phoenix.LiveView.Channel.render_diff/3
+             (telemetry 1.3.0) /home/naoisobe/projects/todo_app/deps/telemetry/src/telemetry.erl:324: :telemetry.span/3
+             (phoenix_live_view 1.1.17) lib/phoenix_live_view/channel.ex:1013: Phoenix.LiveView.Channel.render_diff/3
+             (phoenix_live_view 1.1.17) lib/phoenix_live_view/channel.ex:843: Phoenix.LiveView.Channel.handle_changed/4
+             (stdlib 7.1) gen_server.erl:2434: :gen_server.try_handle_info/3
+             (stdlib 7.1) gen_server.erl:2420: :gen_server.handle_msg/3
+             (stdlib 7.1) proc_lib.erl:333: :proc_lib.init_p_do_apply/3
+
+....
+Finished in 0.7 seconds (0.3s async, 0.4s sync)
+21 tests, 1 failure
